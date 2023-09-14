@@ -1,0 +1,81 @@
+﻿@model List<Order>
+@{ 
+    ViewData["Title"] = "All orders";
+}
+<div class="shoping-cart section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="headline">
+                    <h2>List of all your orders</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                {
+                                    <th>User</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="shopping-cart-btn">
+                                        <button type="button" class="btn btn-default left-cart">
+                                            <a class="btn btn-outline-success" asp-controller="Products" asp-action="Index">
+                                                Continue Shopping
+                                            </a>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var order in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle">@order.Id</td>
+                                    <td class="align-middle">
+                                        <ul style="list-style-type:none">
+                                            @foreach (var item in order.OrderItems)
+                                            {
+                                                <li>
+                                                    <div class="alert alert-info" role="alert">
+                                                        <span class="badge bg-success">@item.Amount</span> [@item.Price.ToString("c")] - @item.Product.Name
+                                                    </div>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </td>
+                                    <td class="align-middle">
+                                        @order.OrderItems.Select(m => m.Product.Price * m.Amount).Sum().ToString("c")
+                                    </td>
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <td class="align-middle"> @order.User.FullName </td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+

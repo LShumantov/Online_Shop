@@ -1,0 +1,101 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Product details";
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-3 col-xs-12">
+            <div class="brands">
+                <p class="card-text"> <h3>Category : @Model.ProductCategory </h3> </p>
+                <ul>
+                    <li>
+                        Store: <span>
+                            <a class="btn btn-default" asp-controller="Stores" asp-action="Details" asp-route-id="@Model.StoreId">
+                                @Model.Store.Name
+                            </a>
+                        </span>
+                    </li>
+                    <li>
+                        Manufacture: <span>
+                            <a class="btn btn-default" asp-controller="Manufactures" asp-action="Details" asp-route-id="@Model.ManufactureId">
+                                @Model.Manufacture.FullName
+                            </a>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 col-sm-9 col-xs-12">
+            <div class="single-product-details">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="product-img-detail">
+                            <div class="single_product_image">
+                                <input type="hidden" id="__VIEWxSTATE">
+                                <div class="glass-case" style="width: 334px; height: 414px;">
+                                    <div class="gc-overlay-area" style="display: none;"><div class="gc-overlay-top-icons"><div class="gc-icon gc-icon-close">&nbsp;</div><div class="gc-icon gc-icon-enlarge" style="display: none;">&nbsp;</div><div class="gc-icon gc-icon-compress" style="display: none;">&nbsp;</div></div><div class="gc-overlay-left-icons"><div class="gc-icon gc-icon-prev" style="margin-top: -22.5px;">&nbsp;</div></div><div class="gc-overlay-right-icons"><div class="gc-icon gc-icon-next" style="margin-top: -22.5px;">&nbsp;</div></div><div class="gc-overlay-gcontainer"><div class="gc-overlay-container"><div class="gc-overlay-container-display"><img class="gc-overlay-display" alt=" "></div></div></div></div><div class="gc-display-area" style="height: 345px; width: 334px; top: 0px; left: 0px;">
+                                        <div class="gc-icon gc-icon-download" style="display: none; bottom: 0px; left: 0px;"></div><div class="gc-icon gc-icon-next" style="display: none; margin-top: -15px;"></div><div class="gc-icon gc-icon-prev" style="display: none; margin-top: -15px;"></div><div class="gc-display-container" style="width: 255.576px; height: 341px; margin-left: -38.7879%; margin-top: -51.6667%;">
+                                            <div class="gc-lens" style="display: none; width: 243px; height: 242px; top: 99px; left: 13px; opacity: 0.5;"></div>
+                                            <img src="@Model.ImageURL" alt="@Model.Name" style="width: 255.576px; height: 341px;">
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-12">
+                        <div class="single-product-content">
+                            <h3>@Model.Name</h3>
+                            <div class="product-review">
+                                <p class="card-text">@Model.Description</p>
+                                <p class="card-text"><b>Price: </b>@Model.Price</p>
+                                <p class="card-text"><b>Start Date: </b>@Model.StartDate.ToString("dd MMM yy")</p>
+                                <p class="card-text"><b>End Date: </b>@Model.EndDate.ToString("dd MMM yy")</p>
+                                <p class="card-text ">
+                                    <b>Status: </b>
+                                    @if (DateTime.Now >= Model.StartDate && DateTime.Now <= Model.EndDate)
+                                    {
+                                        <span class="badge bg-success text-white">AVAILABLE</span>
+                                    }
+                                    else if (DateTime.Now > Model.EndDate)
+                                    {
+                                        <span class="badge bg-danger text-white">EXPIRED</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-primary text-white">UPCOMING</span>
+                                    }
+                                </p>
+                                <b>Category Items : </b>
+                                <hr />
+                                <div class="row">
+                                    @foreach (var Category in Model.Categorys_Products)
+                                    {
+                                        <div class="column text-center">
+                                            <img class="border-info rounded-circle" src="@Category.Category.ProfilePictureURL" style="max-width: 150px" />
+                                            <br />
+                                            <a asp-controller="Categorys" asp-action="Details" asp-route-id="@Category.CategoryId">@Category.Category.FullName</a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card-footer">
+                                <p class="card-text">
+                                    <a class="btn btn-default" asp-action="Index">
+                                        Back to List
+                                    </a>
+                                    <a class="btn btn-success text-white  @((DateTime.Now > Model.EndDate) ? "disabled" : "")"
+                                     asp-controller="Orders"
+                                     asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Price.ToString("c"))</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

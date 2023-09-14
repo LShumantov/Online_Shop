@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "List of all users";
+}
+<div class="shoping-cart section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="headline">
+                    <h2>List of all users</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                                <th>@Html.DisplayNameFor(model => model.UserName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Email)</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="shopping-cart-btn">
+                                        <button type="button" class="btn btn-default left-cart">
+                                            <a class="btn btn-outline-success" asp-controller="Products" asp-action="Index">
+                                                Continue Shopping
+                                            </a>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.FullName)
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td class="align-middle">
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

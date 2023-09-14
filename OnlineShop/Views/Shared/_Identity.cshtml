@@ -1,0 +1,50 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@inject UserManager<ApplicationUser> UserManager;
+
+@if (!User.Identity.IsAuthenticated)
+{
+    <li>
+        <a class="btn btn-outline-success my-2 my-sm-0 logg" asp-controller="Account" asp-action="Login">
+            <img src="images/log.png" alt="#"><i class="bi bi-box-arrow-in-right"></i> Log in
+        </a>
+    </li>
+    <span style="padding: 5px;"></span>
+    <li>
+        <a class="btn btn-outline-primary my-2 my-sm-0" asp-controller="Account" asp-action="Register">
+            <i class="bi bi-person-plus"></i> Register
+        </a>
+    </li>
+}
+else
+{
+    <li class="dropdown dropdown-small">
+        <button class="btn btn-outline-success dropdown-toggle" data-hover="dropdown" type="button" id="profile-btn" data-toggle="dropdown" aria-expanded="false">
+            <img class="account" src="images/account.png" alt="#">
+            <i class="bi bi-person-badge value fa fa-angle-down"></i> Hello @UserManager.GetUserName(User)
+        </button>
+        <ul class="dropdown-menu account-menu">
+            <li>
+                <a class="dropdown-item" asp-controller="Orders" asp-action="Index">
+                    <i class="bi bi-list"></i> Orders
+                </a>
+            </li>
+            @if (User.IsInRole("Admin"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-action="Users">
+                        <i class="bi bi-people"></i> Users
+                    </a>
+                </li>
+
+            }
+        </ul>
+    </li>
+    <li>
+        <form asp-controller="Account" asp-action="Logout">
+            <button class="btn btn-outline-danger my-2 my-sm-0">
+                <i class="bi bi-box-arrow-in-right"></i> Log out
+            </button>
+        </form>
+    </li>
+}
+

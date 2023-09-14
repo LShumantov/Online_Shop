@@ -1,0 +1,347 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ECommerceShop</title>
+	<!-- Font css  -->
+	<script src="https://kit.fontawesome.com/f80eaf5ac5.js" crossorigin="anonymous"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,700,800' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Bitter' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Lato:400,400italic,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="~/fonts/fonts.css">
+	<!-- Fontawesome css      -->
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="~/css/normalize.css">
+	<!-- Bootstrap css      -->
+	<link rel="stylesheet" href="~/css/bootstrap.css">
+	<!-- Owncarousel css      -->
+	<link rel="stylesheet" href="~/css/owl.carousel.css">
+	<!-- image zoom -->
+	<link rel="stylesheet" href="~/css/glasscase.css">
+	<link rel="stylesheet" href="~/css/glasscase.minf195.css">
+	<!-- CSS STYLE-->
+	<link rel="stylesheet" type="~/text/css" href="css/style.css" media="screen" />
+	<!-- SLIDER REVOLUTION 4.x CSS SETTINGS -->
+	<link rel="stylesheet" type="~/css" href="~/css/extralayers.css" media="screen" />
+	<link rel="stylesheet" type="~/css" href="~/rs-plugin/css/settings.css" media="screen" />
+	<link rel="stylesheet" href="~/style.css">
+	<link rel="stylesheet" href="~/css/responsive.css">
+	<link rel="apple-touch-icon-precomposed" href="~/images/apple-touch-icon-precomposed.png">
+	<link rel="shortcut icon" type="image/png" href="~/images/favicon.png" />
+</head>
+
+<body>
+	<header class="entire_header">
+		<div class="header-area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-2 col-sm-7">
+						<div class="header-right">
+							<ul>								
+								<li>
+									<a class ="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index">OnlineShop</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-md-2 col-sm-5">
+						<div class="user-menu">
+							<ul class="list-unstyled list-inline">
+								<li class="dropdown dropdown-small">									
+								    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+								    {																		
+										<a data-toggle="dropdown" data-hover="dropdown" class="dropdown-toggle  menu-managment" href="#" aria-expanded="true">
+											<img class="account" src="images/account.png" alt="#"><span class="value">Management </span><i class="fa fa-angle-down"></i>
+									    </a>
+									    <ul class="dropdown-menu ">
+											<li>
+												<a class="dropdown-item" asp-controller="Stores" asp-action="Index"><i class="bi bi-camera-reels"></i> Stores</a>
+											</li>
+											<li>
+												<a class="dropdown-item" asp-controller="Manufactures" asp-action="Index"><i class="bi bi-headset"></i> Manufactures</a>
+											</li>
+											<li>
+												<a class="dropdown-item" asp-controller="Categorys" asp-action="Index"><i class="bi bi-person-square"></i> Categorys</a>
+											</li>										
+										</ul>
+								     }									
+								</li>
+							</ul>
+						</div>
+					</div>					
+					<div class="col-md-6 col-sm-7">
+						<div class="header-right">
+							<ul>
+								<li>
+									<a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-film"></i> Products</a>
+								</li>
+								<partial name="_Identity.cshtml" />															
+							</ul>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		<div class="logo_area">
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4 col-md-4 col-xs-12">
+						<div class="logo">
+							<a href="index.html">
+								<img src="images/logo.png" alt="">
+							</a>
+						</div>
+					</div>					
+					<div class="col-sm-8 col-md-8 col-xs-12">								
+						<div class="search-area">
+							<form class="form-inline my-2 my-lg-0" asp-controller="Products" asp-action="Filter" style="padding-right: 25px;">
+								<div class="control-group">
+
+									<ul class="categories-filter animate-dropdown">
+										<li class="dropdown">
+
+											<a class="dropdown-toggle" data-toggle="dropdown" href="#">Search <b class="caret"></b></a>											
+										</li>
+									</ul>
+									<input name="searchString" type="text" class="search-field" placeholder="Search for a Product..." aria-label="Recipient's username" aria-describedby="button-addon2">
+									<button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search search-button"></i></button>
+								</div>
+							</form>
+						</div>
+						<div class="logo_right">
+							<span><i class="fa fa-phone"></i></span>
+							<a href="tel:+112345689">
+								CALL US FREE
+								<br>+01 123 456 89
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>				
+	</header>
+	@RenderBody()
+	<!-- Entire FOOTER START -->
+	<footer class="entire_footer">
+		<!-- FOOTER-AREA -->
+		<div class="footer_area">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="footer_text">
+							<p>&copy;2015 <a href="index.html">E-Comshop</a>. All rights reserved</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6 col-xs-12">
+						<div class="footer_right">
+							<ul>
+								<li><a href="#"><img src="~/images/mc.png" alt="" /></a></li>
+								<li><a href="#"><img src="~/images/visa.png" alt="" /></a></li>
+								<li><a href="#"><img src="~/images/crr.png" alt="" /></a></li>
+								<li><a href="#"><img src="~/images/disco.png" alt="" /></a></li>
+								<li><a href="#"><img src="~/images/bank.png" alt="" /></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- FOOTER-AREA:END -->
+	</footer>
+	<!-- Entire FOOTER END -->
+	<!-- jQuery latest -->
+	<script type="text/javascript" src="~/js/jQuery.2.1.4.js"></script>
+	<!-- js Modernizr -->
+	<script src="~/js/modernizr-2.6.2.min.js"></script>
+	<!-- js Modernizr -->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js"></script>
+	<!-- js CounterUp -->
+	<script src="~/js/jquery.counterup.min.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {				//counter up
+			$('.counter').counterUp({ delay: 10, time: 1000 });
+		});
+	</script>
+	<!-- Revolution slider -->
+	<script type="text/javascript" src="~/rs-plugin/js/jquery.themepunch.tools.min.js"></script>
+	<script type="text/javascript" src="~/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+	<!-- Bootsrap js -->
+	<script src="~/js/bootstrap.min.js"></script>
+	<!-- Plugins js -->
+	<script src="~/js/plugins.js"></script>
+	<!-- Owl js -->
+	<script src="~/js/owl.carousel.min.js"></script>
+	<!-- Custom js -->
+	<script src="~/js/main.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script>
+		$(function () {
+			$("#slider-range").slider({
+				range: true,
+				min: 150,
+				max: 1400,
+				values: [520, 1100],
+				slide: function (event, ui) {
+					$("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+				}
+			});
+			$("#amount").val("$" + $("#slider-range").slider("values", 0) +
+				" - $" + $("#slider-range").slider("values", 1));
+		});
+	</script>
+	<!-- glasscase js -->
+	<script src="~/js/jquery.glasscase.minf195.js"></script>
+	<script type="text/javascript">
+		$(function () {
+			//ZOOM
+			$("#zoom1").glassCase({ 'widthDisplay': 456, 'heightDisplay': 470, 'isSlowZoom': true });
+		});
+	</script>
+	@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+@*
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-controller="Products" asp-action="Index">OnlineShop</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Products" asp-action="Index"><i class="bi bi-film"></i> Products</a>
+                        </li>
+
+                        @if(User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                        {
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bi bi-gear"></i> Management
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" asp-controller="Stores" asp-action="Index"><i class="bi bi-camera-reels"></i> Stores</a>
+                                        <a class="dropdown-item" asp-controller="Manufactures" asp-action="Index"><i class="bi bi-headset"></i> Manufactures</a>
+                                        <a class="dropdown-item" asp-controller="Categorys" asp-action="Index"><i class="bi bi-person-square"></i> Categorys</a>
+                                    </div>
+                                </li>
+                        }
+                        
+                    </ul>
+
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Products" asp-action="Filter" style="padding-right: 25px;">
+                        <input name="searchString" type="text" class="form-control" placeholder="Search for a Product..." aria-label="Recipient's username" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+                    </form>
+
+                    @*<ul class="navbar-nav">
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+                    </ul>
+
+                    <partial name="_Identity.cshtml" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - OnlineShop
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+*@
+
+
+@*<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - OnlineShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/OnlineShop.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">OnlineShop</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - OnlineShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+*@

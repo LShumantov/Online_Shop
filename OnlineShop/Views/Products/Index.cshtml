@@ -1,0 +1,63 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "List of Products";
+}
+<section class="laest-blog-area section-padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="headline">
+                    <h2>All Products</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-sm-4" style="margin-bottom: 15px">
+                    <div class="blog-single">
+                        <div class="blog-image">
+                            <img src="@item.ImageURL" width="100%" alt="@item.Name">
+                        </div>
+                        <div class="blog-text">
+                            <h3>
+                                <a>
+                                    @item.Name
+                                    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+                                    {
+                                        <a class="text-white float-right" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-bars"></i></a>
+                                    }
+                                </a>
+                            </h3>
+                            <hr class="blog-text-h3">
+                            <p>@item.Description </p>
+                            <div class="blog-comments">
+                                <div class="product-wid-price">
+                                    <ins>
+                                        <button type="button" class="btn btn-default home-button-sowdetails">
+                                            <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
+                                                <i class="bi bi-eye-fill">Show Details</i>
+                                            </a>
+                                        </button>
+                                    </ins>
+                                </div>
+                                <div class="product-wid-price">
+                                    <ins>
+                                        <a class="btn btn-success text-white @((DateTime.Now > item.EndDate) ? "disabled" : "")"
+                                           asp-controller="Orders"
+                                           asp-action="AddItemToShoppingCart"
+                                           asp-route-id="@item.Id">
+                                            <i class="bi fa fa-shopping-cart"></i> Add to Cart (Price @item.Price.ToString("c"))
+                                        </a>
+                                    </ins>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+@await Html.PartialAsync("_CreateItem", "Products") 
